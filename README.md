@@ -46,7 +46,7 @@ docker run -d -p 80:80
     --add-host sparql-endpoint-service:<ip/hostname>
     -e ENV_FAILED_REQUEST_CACHE_DURATION=2m
     --name=scache
-    -v /persistentstorage/logs/:/logs
+    -v /persistentstorage/logs/:/nginx/logs
     bertvannuffelen/simplesparqlcache
 ```
 
