@@ -53,30 +53,4 @@ docker run -d -p 80:80
 Note the public exposure of the logs on persistent storage. It is a good practice to ensure that the logs are stored on
 a safe location. If the service has to change, the logs are kept for future problem resolution.
 
-# Design decisions
-
-## sparql endpoint
-This proxy activates a sparql-endpoint at the url $ENV_URI_DOMAIN/sparql. This sparql interface has a web interface and a machine readable interface.
-Via content negotation the machine readable interface is reachable. The Accept header is one of the following values defined according to W3C:
-
-| ACCEPT header | description format |
-| -------------------- | ------------- |
-|application/sparql-results+json| [https://www.w3.org/TR/sparql11-results-json/] |
-|application/sparql-results+xml | [https://www.w3.org/TR/rdf-sparql-XMLres/] |
-|text/csv                       | [https://www.w3.org/TR/sparql11-results-csv-tsv/] |
-|text/tab-separated-values      | [https://www.w3.org/TR/sparql11-results-csv-tsv/] |
-
-
-## content negotation
-This proxy activates content negotation. The table below describes the implemented accept headers.
-
-
-| document format | corresponding accept-header | corresponding extension |
-| --------------- | --------------------------- | ----------------------- |
-| HTML | text/html | .html|
-| RDF  | application/rdf+xml | .rdf|
-| TURTLE | text/turtle | .ttl|
-| NTRIPLES | text/ntriples | .nt|
-| jsonld | application/ld+json| .jsonld|
-| json | application/json| .json|
 
