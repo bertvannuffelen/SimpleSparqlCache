@@ -1,0 +1,7 @@
+select distinct ?p where {?s ?p ?o} LIMIT 1000
+select distinct ?p where {?s ?p ?o} LIMIT 5000
+select distinct ?p where {?s ?p ?o} LIMIT 10000
+select distinct ?p where {?s ?p ?o} LIMIT 25000
+select distinct ?p where {?s ?p ?o} LIMIT 50000
+select distinct ?p where {?s ?p ?o} LIMIT 100000
+select distinct ?p where {?s ?p ?o} LIMIT 200000
