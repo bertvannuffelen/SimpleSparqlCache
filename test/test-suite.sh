@@ -17,14 +17,14 @@ echo -e "${RED}REMOTE VIRTUOSO PROXY: ${GREEN} ${virtuoso_url}${NC}"
 
 while read query; do
     echo -e "${PURPLE}query: ${YELLOW} ${query}${NC}" 
-    nginxtime=$(TIMEFORMAT=%R; time (for i in {1..10}; do curl -s -w '\n' -XPOST -H 'Content-Type: application/x-www-form-urlencoded' --data-urlencode query='${query}' ${nginx_url} > /dev/null; sleep 0.5; done) 2>&1 1>/dev/null)
-    virtuosotime=$(TIMEFORMAT=%R; time (for i in {1..10; do curl -s -w '\n' -XPOST -H 'Content-Type: application/x-www-form-urlencoded' --data-urlencode query='${query}' ${virtuoso_url} > /dev/null; sleep 0.5; done) 2>&1 1>/dev/null)
+    nginxtime=$(TIMEFORMAT=%R; time (for i in {1..15}; do curl -s -w '\n' -XPOST -H 'Content-Type: application/x-www-form-urlencoded' --data-urlencode query='${query}' ${nginx_url} > /dev/null; sleep 0.5; done) 2>&1 1>/dev/null)
+    virtuosotime=$(TIMEFORMAT=%R; time (for i in {1..15}; do curl -s -w '\n' -XPOST -H 'Content-Type: application/x-www-form-urlencoded' --data-urlencode query='${query}' ${virtuoso_url} > /dev/null; sleep 0.5; done) 2>&1 1>/dev/null)
 
-    nginxavg=$(echo "scale=4; $nginxtime / 10" | bc -l)
-    virtuosoavg=$(echo "scale=4; $virtuosotime / 10" | bc -l)
+    nginxavg=$(echo "scale=4; $nginxtime / 15" | bc -l)
+    virtuosoavg=$(echo "scale=4; $virtuosotime / 15" | bc -l)
 
     decrease=$(echo "scale=4; $virtuosoavg - $nginxavg" | bc -l)
-    perc_decrease=$(echo "$decrease / $virtuosoavg * 100" | bc -l)
+    perc_decrease=$(echo "scale=4; $decrease / $virtuosoavg * 100" | bc -l)
 
     echo -e "\t${PURPLE}avg nginx proxy time (15 calls): ${YELLOW} ${nginxavg}${NC}"
     echo -e "\t${PURPLE}avg virtuoso time (15 calls): ${YELLOW} ${virtuosoavg}${NC}"
