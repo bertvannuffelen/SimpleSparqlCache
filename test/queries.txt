@@ -2,4 +2,8 @@ select distinct ?s where { ?s ?p ?o. ?p a ?pt. ?o a ?ot. } LIMIT 1000
 select distinct ?p where { ?s ?p ?o . } LIMIT 50000
 select distinct ?p where { ?s ?p ?o . } LIMIT 100000
 select distinct ?p where { ?s ?p ?o . } LIMIT 200000
-select distinct count(?o) where { ?s a ?o . } order by ?s
+select distinct ?name ?street ?pcode where { ?organization gr:legalName ?name ; vcard2006:hasAddress ?address . ?address vcard2006:street-address ?street ; vcard2006:postal-code ?pcode . }
+PREFIX vcard2006: <http://www.w3.org/2006/vcard/ns#> PREFIX elodGeo: <http://linkedeconomy.org/geoOntology#> SELECT DISTINCT ?pcode ?nameMunicipality WHERE { ?organization vcard2006:hasAddress ?address . ?address vcard2006:postal-code ?pcode. ?codeArea elodGeo:postalCode ?pcode . ?municipality elodGeo:hasPart ?codeArea ; elodGeo:name ?nameMunicipality . filter langMatches(lang(?nameMunicipality),'en') }
+SELECT distinct * WHERE { ?s rdfs:subClassOf ?p }
+prefix qb:<http://purl.org/linked-data/cube#> select distinct ?p ?o from <http://yourdatastories.eu/Diavgeia/DataCube> where { ?s a qb:Observation ; ?p ?o }
+select distinct ?sector ?label (count(distinct ?project) as ?count) where { ?project elod:sector ?sector . ?sector skos:prefLabel ?label }
