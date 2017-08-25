@@ -6,7 +6,7 @@ YELLOW='\033[1;33m'
 PURPLE='\033[1;35m'
 NC='\033[0m' # No Color
 
-remote_ip="http://143.233.226.61"
+remote_ip=""
 remote_path="sparql"
 nginx_url="${remote_ip}:443/${remote_path}"
 virtuoso_url="${remote_ip}:8890/${remote_path}"
