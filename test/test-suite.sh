@@ -18,7 +18,7 @@ echo -e "${RED}REMOTE VIRTUOSO PROXY: ${GREEN} ${virtuoso_url}${NC}"
 
 while IFS=  read -r query
 do
-    echo -e "${PURPLE}Query: ${YELLOW}${query} to Nginx" 
+    echo -e "${PURPLE}Query: ${YELLOW}${query} to Nginx${NC}" 
     nginx_start=$(date +%s)
     for i in {1..10}
     do
@@ -27,7 +27,7 @@ do
     nginx_stop=$(date +%s)   
     nginxavg=$(echo "scale=4; ($nginx_stop - $nginx_start) / 10" | bc -l)
     
-    echo -e "Query: ${query} to Virtuoso"
+    echo -e "${PURPLE}Query: ${YELLOW}${query} to Virtuoso${NC}"
     virtuoso_start=$(date +%s)
     for i in {1..10}
     do
