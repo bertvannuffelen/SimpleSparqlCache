@@ -54,3 +54,9 @@ Note the public exposure of the logs on persistent storage. It is a good practic
 a safe location. If the service has to change, the logs are kept for future problem resolution.
 
 
+## Testing:
+
+To run tests, go to the `test-suite.sh` file and edit the **remote_ip** variable with the server ip where the nginx & virtuoso containers are running. Then just execute `./test-suite.sh`.
+
+To add more queries, just edit the `queries.txt` file. Don't forget to add a newline after the last query or it won't be executed.
+
