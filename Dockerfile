@@ -14,4 +14,12 @@ ENV ENV_SPARQL_ENDPOINT_SERVICE_URL http://sparql-endpoint-service:8890/sparql
 ENV ENV_SERVICE_URL sparql.data.vlaanderen.be
 ENV ENV_SUCCESS_REQUEST_CACHE_DURATION 60m
 ENV ENV_FAILED_REQUEST_CACHE_DURATION 1m
+ENV ENV_LOGTOSTREAM 0
+
+
+
 RUN /config/bin/start.sh
+
+# from the official NGINX distribution: forward the logs to the docker logs entrypoint
+RUN ln -sf /dev/stdout /nginx/logs/access.log \
+    && ln -sf /dev/stderr /nginx/logs/error.log
