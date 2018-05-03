@@ -18,8 +18,10 @@ ENV ENV_LOGTOSTREAM 0
 
 
 
-RUN /config/bin/start.sh
-
 # from the official NGINX distribution: forward the logs to the docker logs entrypoint
-RUN ln -sf /dev/stdout /nginx/logs/access.log \
-    && ln -sf /dev/stderr /nginx/logs/error.log
+#RUN ln -sf /dev/stdout /nginx/logs/access.log \
+#    && ln -sf /dev/stderr /nginx/logs/error.log
+
+
+CMD ["/config/bin/start.sh", ""]
+
