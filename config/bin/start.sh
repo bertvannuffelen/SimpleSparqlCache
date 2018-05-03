@@ -15,7 +15,7 @@ fi
 
 /config/bin/replace-env.sh /nginx/conf/nginx.conf
 
-nginx -g daemon off
+nginx -g "daemon off;"
 
 
 
